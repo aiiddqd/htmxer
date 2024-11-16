@@ -1,6 +1,6 @@
 <?php 
 /**
- * Plugin Name:       HTMXer
+ * Plugin Name:       @ HTMXer
  * Plugin URI:        https://github.com/aiiddqd/htmxer
  * Description:       Add HTMX to WordPress
  * Version:           0.1.0
