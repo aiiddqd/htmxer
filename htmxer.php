@@ -17,3 +17,7 @@ require_once __DIR__ . '/includes/Settings.php';
 foreach (glob(__DIR__ . '/includes/*.php') as $file) {
     require_once $file;
 }
+
+foreach (glob(__DIR__ . '/includes/*/config.php') as $file) {
+    require_once $file;
+}
