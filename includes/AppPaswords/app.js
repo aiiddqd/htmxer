@@ -2,7 +2,7 @@ document.body.addEventListener('htmx:configRequest', function(event) {
     
     // doc https://htmx.org/docs/#config_request_with_events
     event.detail.headers['Authorization'] = getAuthToken(); 
-    event.detail.parameters['url'] = window.location.href;
+    
 
     function getAuthToken(){
         const session = appGetCookie('web-app-session-id');
