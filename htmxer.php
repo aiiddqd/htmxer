@@ -10,7 +10,7 @@
  * Version:           0.1.241216
  */
 
-use WP_REST_Request;
+use WP_REST_Request, WP_REST_Server;
 
 require_once __DIR__ . '/includes/Settings.php';
 
@@ -27,7 +27,7 @@ foreach (glob(__DIR__ . '/includes/*/config.php') as $file) {
  * url https://example.site/wp-json/htmxer/some_template
  * hook add_action('htmxer/some_template', 'callback');
  */
-function render_htmxer_template(WP_REST_Request $request)
+function htmxer_actions(WP_REST_Request $request)
 {
     $hook = $request->get_param('hook');
     $context = $request->get_header('context') ?? [];
@@ -54,8 +54,8 @@ add_action('rest_api_init', function () {
     }
 
     register_rest_route('htmxer', '/(?P<hook>[a-zA-Z0-9\-_]+)', [
-        'methods' => 'GET',
-        'callback' => 'render_htmxer_template',
+        'methods' => WP_REST_Server::ALLMETHODS,
+        'callback' => 'htmxer_actions',
         'permission_callback' => '__return_true',
     ]);
 });
