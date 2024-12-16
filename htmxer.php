@@ -22,6 +22,20 @@ foreach (glob(__DIR__ . '/includes/*/config.php') as $file) {
     require_once $file;
 }
 
+/**
+ * Example
+ * url https://example.site/wp-json/htmxer/v1/some_template
+ * hook add_action('htmxer_action_some_template', 'callback');
+ */
+function render_htmxer_template(WP_REST_Request $request)
+{
+    $hook = $request->get_param('hook');
+
+    header('Content-Type: text/html');
+    do_action('htmxer_action_' . $hook, $request);
+    exit;
+}
+
 add_action('rest_api_init', function () {
 
     global $wp;
@@ -34,21 +48,9 @@ add_action('rest_api_init', function () {
     }
 
     // /wp-json/app/v1/toolbar
-    register_rest_route('htmxer', '/v1/(?P<template>[a-zA-Z0-9\-_]+)', [
+    register_rest_route('htmxer', '/v1/(?P<hook>[a-zA-Z0-9\-_]+)', [
         'methods' => 'GET',
-        'callback' => function (WP_REST_Request $request) {
-            $value = $request->get_param( 'template' );
-
-            header('Content-Type: text/html');
-
-            /**
-             * Example
-             * url https://example.site/wp-json/htmxer/v1/some_template
-             * hook add_action('htmxer_action_some_template', 'callback');
-             */
-            do_action('htmxer_action_' . $value, $request);
-            exit;
-        },
+        'callback' => 'render_htmxer_template',
         'permission_callback' => '__return_true',
     ]);
 });
