@@ -32,7 +32,7 @@ function render_htmxer_template(WP_REST_Request $request)
     $hook = $request->get_param('hook');
 
     header('Content-Type: text/html');
-    do_action('htmxer_action_' . $hook, $request);
+    do_action('htmxer/action/' . $hook, $request);
     exit;
 }
 
@@ -54,3 +54,15 @@ add_action('rest_api_init', function () {
         'permission_callback' => '__return_true',
     ]);
 });
+
+add_action('wp_footer', function () {
+    $context = apply_filters('htmxer/context', []);
+    ?>
+    <script>
+        document.body.addEventListener('htmx:configRequest', function (event) {
+            event.detail.headers['context'] = '<?= json_encode($context) ?>';
+        });
+    </script>
+
+    <?php
+}, 555);
