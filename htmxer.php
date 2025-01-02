@@ -29,6 +29,7 @@ foreach (glob(__DIR__ . '/includes/*/config.php') as $file) {
  */
 function htmxer_actions(WP_REST_Request $request)
 {
+
     $hook = $request->get_param('hook');
     $context = $request->get_header('context') ?? [];
     if ($context) {
