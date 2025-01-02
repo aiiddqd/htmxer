@@ -53,24 +53,10 @@ function get_password_by_app_name($user_id)
 }
 
 
-add_action('1rest_api_init', function(){
-
-    // if ( wp_is_serving_rest_request() ) {
-    //     global $wp;
-    //     if('wp-json/app/v1/toolbar' == $wp->request) {
-    //         remove_filter( 'rest_authentication_errors', 'rest_cookie_check_errors', 100 );
-    //     }
-
-    // }
-    
-});
-
-
-
 add_action('wp_enqueue_scripts', function(){
     $path = 'app.js';
     $url = plugins_url($path, __FILE__);
     $path_absolute = __DIR__ . '/' . $path;
-    wp_enqueue_script('app-toolbar', $url, array('htmx'), filemtime($path_absolute), true);
+    wp_enqueue_script('app-htmx', $url, array('htmx'), filemtime($path_absolute), true);
 });
 
