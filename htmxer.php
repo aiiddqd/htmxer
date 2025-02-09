@@ -10,6 +10,8 @@
  * Version:           0.1.241216
  */
 
+namespace HTMXer;
+
 use WP_REST_Request, WP_REST_Server;
 
 require_once __DIR__ . '/includes/Settings.php';
