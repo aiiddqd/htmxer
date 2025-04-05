@@ -56,7 +56,7 @@ add_action('rest_api_init', function () {
 
     register_rest_route('htmxer', '/(?P<hook>[a-zA-Z0-9\-_]+)', [
         'methods' => \WP_REST_Server::ALLMETHODS,
-        'callback' => 'htmxer_actions',
+        'callback' => __NAMESPACE__ . '\\htmxer_actions',
         'permission_callback' => '__return_true',
     ]);
 });
