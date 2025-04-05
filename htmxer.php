@@ -7,7 +7,7 @@
  * License URI:       https://www.gnu.org/licenses/gpl-2.0.txt
  * Text Domain:       htmxer
  * Domain Path:       /languages
- * Version:           0.1.241216
+ * Version:           0.1.250405
  */
 
 namespace HTMXer;
