@@ -4,7 +4,7 @@ namespace htmxer;
 
 add_action('wp_head', function (){
     $config = apply_filters('htmxer/config', []);
-	echo '<meta name="htmx-config" content=\'' . json_encode($config) . '\'>';
+	echo '<meta name="htmx-config" dd content=\'' . json_encode($config) . '\'>';
 });
 
 Settings::init();
